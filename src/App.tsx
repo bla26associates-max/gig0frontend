@@ -2,7 +2,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LandingPage from './lib/pages/landingpage'
 //import Dashboard from './pages/Dashboard'
-import AppShell from './layouts/AppShell'
 
 function App() {
   return (
