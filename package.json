@@ -30,6 +30,8 @@
     "@storybook/addon-interactions": "8.6.15",
     "@storybook/addon-links": "8.6.15",
     "@storybook/react-vite": "8.6.15",
+    "@types/react": "^19.2.9",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "storybook": "8.6.15",
     "typescript": "~5.9.3",

@@ -1,4 +1,4 @@
-import { Header } from "../lib/components/header"; // Import directly here
+import { Header } from "./lib/components/landing/header"; // Import directly here
 
 export function LandingPage() {
   return (
