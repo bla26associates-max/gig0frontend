@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react-vite'
+import type { Preview } from '@storybook/react'
 import '../src/index.css'; // This connects the Tailwind v4 OKLCH colors
 
 const preview: Preview = {
