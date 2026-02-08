@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 // 2. Ensure icons are imported from lucide-react
 import { Menu, X } from "lucide-react"
 // 3. Fix the @/ alias by using a relative path
-import { Button } from "../ui/button"
+import { Button } from "./ui/button"
 
 const navLinks = [
   { to: "/", label: "Home" },
