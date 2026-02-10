@@ -1,13 +1,19 @@
+// landingpage.tsx
+
 import React from "react"
 import { Header } from "./header"
 import { HeroSection } from "./herosection"
 import { IndustriesSection } from "./industries-section"
 import { HowHiringWorksSection } from "./howhiringworks-section"
+import { TestimonialsSection } from "./testimonials-section"
+import { CTASection } from "./cta-section"
 import { StaffStatus } from "@/lib/types" // Standardized terminology
 
 /**
  * LandingPage component acting as the primary coordinator for the 
  * Philadelphia StaffHub pre-login experience.
+ * * Standardized to integrate social proof and conversion layers while 
+ * maintaining high-fidelity Vercel styling.
  */
 export function LandingPage() {
   return (
@@ -16,34 +22,39 @@ export function LandingPage() {
       <Header />
       
       <main className="flex-auto">
-        {/* 2. Hero Section: Grounds the design in the Philadelphia context */}
+        {/* 2. Hero Section: Visual entry point for the Philadelphia market */}
         <HeroSection />
 
-        {/* 3. Industries Section: Displays standardized "Accredited Talent" counts */}
+        {/* 3. Industries Section: Horizontal scroll (mobile) / Grid (desktop) 
+            Displays standardized "Accredited Talent" counts.
+        */}
         <IndustriesSection />
 
-        {/* 4. How Hiring Works Section: 
-            Prop-driven animation section utilizing the HiringFlowStepCard.
-            'viewContext="public"' ensures marketing-focused terminology.
+        {/* 4. How Hiring Works Section: Animated process flow 
+            Prop-driven 'viewContext' ensures marketing terminology.
         */}
         <HowHiringWorksSection viewContext="public" />
 
-        {/* 5. Pre-login Call to Action */}
-        <section className="bg-accent py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold tracking-tight text-accent-foreground sm:text-4xl">
-              Ready to find your next professional?
-            </h2>
-            <p className="mt-4 text-lg text-accent-foreground/80">
-              Join the growing community of Philadelphia businesses utilizing **{StaffStatus.ACCREDITED}**.
-            </p>
-          </div>
-        </section>
+        {/* 5. Testimonials Section: Mobile snap-scroll social proof carousel
+            Displays "Verified Company" and "Long-term Client" badges.
+        */}
+        <TestimonialsSection viewContext="public" />
+
+        {/* 6. Conversion CTA Section: Full-width primary-themed call to action
+            Dynamically injects "Verified" and "Accredited Talent" terminology.
+        */}
+        <CTASection viewContext="public" />
       </main>
 
-      {/* 6. Standardized Footer: Utilizing immutable verified status */}
+      {/* 7. Standardized Footer: Utilizing immutable status strings */}
       <footer className="border-t border-border bg-card py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+          <div className="mb-4 flex justify-center space-x-6 text-sm font-medium text-muted-foreground">
+             <a href="#industries" className="hover:text-foreground">Industries</a>
+             <a href="#how-it-works" className="hover:text-foreground">Process</a>
+             <a href="#testimonials" className="hover:text-foreground">Success Stories</a>
+             <a href="/login" className="hover:text-foreground">Login</a>
+          </div>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Philadelphia StaffHub. 
             All talent is **{StaffStatus.VERIFIED}** and vetted for local compliance.
