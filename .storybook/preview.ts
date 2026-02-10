@@ -3,21 +3,25 @@ import '../src/index.css'; // This connects the Tailwind v4 OKLCH colors
 
 const preview: Preview = {
   parameters: {
-// Add this to ensure mobile-first testing is the default
-viewport: {
-  defaultViewport: 'mobile1', 
-},
-controls: {
-  matchers: {
-    color: /(background|color)$/i,
-    date: /Date$/i,
-  },
-},
-
+    // Standardizing the background to match the Philadelphia StaffHub 'bg-background'
+    backgrounds: {
+      default: 'staffhub-light',
+      values: [
+        { name: 'staffhub-light', value: 'oklch(0.96 0.005 80)' },
+        { name: 'staffhub-dark', value: 'oklch(0.20 0.01 250)' },
+      ],
+    },
+    // Mobile-first testing as the default for high-fidelity review
+    viewport: {
+      defaultViewport: 'mobile1', 
+    },
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/i,
+      },
+    },
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: 'todo'
     }
   },
