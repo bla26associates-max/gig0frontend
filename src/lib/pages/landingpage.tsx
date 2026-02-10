@@ -1,9 +1,14 @@
-import { Header } from "./header";
-import { HeroSection } from "./herosection";
-import { IndustriesSection } from "./industries-section"; // Standardized import
-// Note: Once created, you will import HiringFlowSection here
-import { StaffStatus } from "@/lib/types"; // Import standardized terminology
+import React from "react"
+import { Header } from "./header"
+import { HeroSection } from "./herosection"
+import { IndustriesSection } from "./industries-section"
+import { HowHiringWorksSection } from "./howhiringworks-section"
+import { StaffStatus } from "@/lib/types" // Standardized terminology
 
+/**
+ * LandingPage component acting as the primary coordinator for the 
+ * Philadelphia StaffHub pre-login experience.
+ */
 export function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans antialiased">
@@ -11,36 +16,32 @@ export function LandingPage() {
       <Header />
       
       <main className="flex-auto">
-        {/* 2. Hero Section: Primary Design Entry Point 
-            Grounds the user in the Philadelphia context.
-        */}
+        {/* 2. Hero Section: Grounds the design in the Philadelphia context */}
         <HeroSection />
 
-        {/* 3. Industries Section: Prop-Driven Grid/Scroll
-            Standardized to show "Accredited Talent" and "Professionals Available".
-        */}
+        {/* 3. Industries Section: Displays standardized "Accredited Talent" counts */}
         <IndustriesSection />
 
-        {/* 4. How Hiring Works Section (Placeholder)
-            Will implement HiringFlowStepCard logic here.
+        {/* 4. How Hiring Works Section: 
+            Prop-driven animation section utilizing the HiringFlowStepCard.
+            'viewContext="public"' ensures marketing-focused terminology.
         */}
-        <section id="how-it-works" className="w-full border-t border-border bg-secondary/20 py-16 sm:py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-              How Hiring Works
+        <HowHiringWorksSection viewContext="public" />
+
+        {/* 5. Pre-login Call to Action */}
+        <section className="bg-accent py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold tracking-tight text-accent-foreground sm:text-4xl">
+              Ready to find your next professional?
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Simple steps to secure **{StaffStatus.ACCREDITED}** for your business.
+            <p className="mt-4 text-lg text-accent-foreground/80">
+              Join the growing community of Philadelphia businesses utilizing **{StaffStatus.ACCREDITED}**.
             </p>
-            {/* The HiringFlowSection component will go here */}
-            <div className="mt-12 h-64 w-full rounded-2xl border-2 border-dashed border-border flex items-center justify-center text-muted-foreground">
-               Hiring Flow Components Pending Upload
-            </div>
           </div>
         </section>
       </main>
 
-      {/* 5. Standardized Footer */}
+      {/* 6. Standardized Footer: Utilizing immutable verified status */}
       <footer className="border-t border-border bg-card py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <p className="text-sm text-muted-foreground">
@@ -50,5 +51,5 @@ export function LandingPage() {
         </div>
       </footer>
     </div>
-  );
+  )
 }
