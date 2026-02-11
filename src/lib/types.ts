@@ -1,99 +1,68 @@
 // types.ts
+/**
+ * PHILADELPHIA STAFFHUB - DATA DICTIONARY
+ * Version: 1.1.0
+ * Strategy: Database-Driven, Four-State Logic
+ */
 
 /**
- * Standardized Terminology Enums
- * These match your backend database requirements exactly.
+ * Standardized User Roles
+ * Drives the viewContext pivot throughout the application.
+ * Matches expected backend role categorization.
+ */
+export type UserRole = 'public' | 'employer' | 'employee' | 'admin';
+
+/**
+ * Authentication Modes
+ * Defines the UI state for the Modular Auth System.
+ */
+export type AuthMode = 'signin' | 'signup';
+
+/**
+ * Immutable Brand Terminology
+ * Replaces all hardcoded strings to ensure consistency across 
+ * Hero, Industries, and Registration forms.
  */
 export enum StaffStatus {
-  VERIFIED = "Verified",
   ACCREDITED = "Accredited Talent",
-  PENDING = "Pending Review",
-  INACTIVE = "Inactive"
+  VERIFIED = "Verified Professional",
+  CERTIFIED = "Certified Staff",
+  PHILADELPHIA_VERIFIED = "Philadelphia Verified"
 }
 
 /**
- * NEW: Standardized Client & Trust Terminology
- * Grounding the TestimonialCard badges in immutable logic.
+ * Auth Modal Options
+ * The interface for the openAuthModal trigger used by Header and Hero components.
  */
-export enum ClientStatus {
-  VERIFIED_COMPANY = "Verified Company",
-  LONG_TERM = "Long-term Client"
+export interface AuthModalOptions {
+  mode: AuthMode;
+  viewContext: UserRole;
 }
 
-export interface Industry {
-  id: string;
-  name: string; // e.g., "Healthcare", "Logistics"
-  professionalsCount: number;
-  label: string; // Standardized: "Professionals Available"
-  trending?: boolean;
-}
+/**
+ * Global Branding Constants
+ */
+export const PLATFORM_NAME = "StaffHub Philadelphia";
+export const AUTH_TAGLINE = "Secure, Locally-Verified Professional Staffing";
 
-export interface Professional {
-  id: string;
-  fullName: string;
+/**
+ * Zod-Ready Interface: Employer Profile
+ * This interface acts as the blueprint for the Employer Database Schema.
+ */
+export interface EmployerProfile {
+  companyName: string;
+  ein: string; // Required for 'employer' context verification
   industry: string;
-  status: StaffStatus;
+  location: string;
+}
+
+/**
+ * Zod-Ready Interface: Employee Profile
+ * This interface acts as the blueprint for the Employee Database Schema.
+ */
+export interface EmployeeProfile {
+  fullName: string;
+  specialization: string;
   yearsExperience: number;
-  location: string; // e.g., "North Philly", "Center City"
-  verifiedAt?: string; // ISO date string
+  status: StaffStatus;
 }
-
-/**
- * NEW: Testimonial Interface
- * Supporting the Vercel-inspired mobile snap-scroll carousel.
- */
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  quote: string;
-  photo: string;
-  logo?: string;
-  rating: number; // 1-5 scale
-  status: ClientStatus;
-}
-
-/**
- * NEW: CTA Section Interface
- * Ensuring headline/subtext remain prop-driven for different login states.
- */
-export interface CTAData {
-  headline: string;
-  subtext: string;
-  buttonLabel: string;
-  buttonLink: string;
-}
-
-/** * Boilerplates for New Data
- * Use these when adding new items to your local state or database.
- */
-export const NEW_INDUSTRY_BOILERPLATE: Industry = {
-  id: "",
-  name: "New Industry",
-  professionalsCount: 0,
-  label: "Professionals Available", //
-  trending: false,
-};
-
-export const NEW_PROFESSIONAL_BOILERPLATE: Professional = {
-  id: "",
-  fullName: "",
-  industry: "",
-  status: StaffStatus.PENDING, //
-  yearsExperience: 0,
-  location: "Philadelphia, PA", //
-};
-
-/**
- * NEW: Testimonial Boilerplate
- * Standardized for the TestimonialsSection.
- */
-export const NEW_TESTIMONIAL_BOILERPLATE: Testimonial = {
-  id: "",
-  name: "Client Name",
-  role: "Company Owner",
-  quote: "Standardized feedback goes here.",
-  photo: "/assets/placeholders/avatar.png",
-  rating: 5,
-  status: ClientStatus.VERIFIED_COMPANY
-};
